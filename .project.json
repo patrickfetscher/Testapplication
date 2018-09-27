@@ -1,0 +1,16 @@
+{
+  "generation": [
+    {
+      "templateId": "WebIDETemplates.testmasterv1",
+      "templateVersion": "1.0.0",
+      "dateTimeStamp": "Tue, 10 Oct 2017 13:26:25 GMT"
+    }
+  ],
+  "translation": {
+    "translationDomain": "",
+    "supportedLanguages": "en,fr,de",
+    "defaultLanguage": "en",
+    "defaultI18NPropertyFile": "i18n.properties",
+    "resourceModelName": "i18n"
+  }
+}

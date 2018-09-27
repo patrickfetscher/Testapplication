@@ -1,0 +1,1 @@
+live-server --cors --browser=Chrome --proxy=/sap/:http://fiori-dev.sap.OPA5.com/sap/

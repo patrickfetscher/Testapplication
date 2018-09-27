@@ -1,0 +1,4 @@
+{
+    "ui5ts.manifestlocation": "webapp\\manifest.json",
+    "git.ignoreLimitWarning": true
+}

@@ -1,0 +1,55 @@
+<mvc:View controllerName="com.OPA5test.controller.Main" xmlns="sap.m" xmlns:f="sap.f" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:layout="sap.ui.layout">
+	<Page title="Version:{version>/version} @@builddate" class="sapUiResponsiveContentPadding">
+		<customHeader>
+			<Bar>
+				<contentLeft>
+				</contentLeft>
+				<contentMiddle>
+					<Text class="headerText" text="{i18n>LeaveQuestionaire}"/>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://sys-help" press="onOpenWelcome"></Button>
+					<Text class="gebVersion" text="@@builddate"/>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content width="auto" id="Startconent">
+			<VBox class="sapUiMediumMargin">
+				<FormattedText htmlText="{StartModel>/HTML}"/>
+				<layout:Grid   class="sapUiMediumMarginTop" >
+					<layout:content>
+						<HBox>
+							<layoutData>
+								<layout:GridData span="L12 M12 S12"/>
+							</layoutData>
+							<Label width="5rem" class="sapUiTinyMarginTop" text="{i18n>LastName}">	
+							</Label>
+							<Input width="10rem" id="username" liveChange="onLiveChange">
+							</Input>
+						</HBox>
+						<HBox>
+							<layoutData>
+								<layout:GridData span="L12 M12 S12"/>
+							</layoutData>
+							<Label width="5rem" class="sapUiTinyMarginTop" text="{i18n>Pin}">	
+							</Label>
+							<Input width="10rem" id="pin" liveChange="onLiveChange" submit="onLiveChange">
+							</Input>
+						</HBox>
+					</layout:content>
+				</layout:Grid>
+			</VBox>	
+		</content>
+		<footer>
+			<Bar>
+				<contentLeft> 
+  				</contentLeft>
+				<contentMiddle>
+				</contentMiddle>
+				<contentRight>
+					<Button type="Accept" text="{i18n>Begin}" icon="sap-icon://navigation-right-arrow" press="begin"/>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</mvc:View>

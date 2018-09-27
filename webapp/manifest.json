@@ -1,0 +1,180 @@
+{
+	"_version": "1.4.0",
+	"sap.app": {
+		"id": "com.OPA5test",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+
+			"version": "@@builddate"
+		},
+		"dataSources": {
+			"zgw_hcm_exit_doc_srv": {
+				"uri": "/sap/opu/odata/sap/zgw_hcm_exit_doc_srv/",
+				"type": "OData",
+				"settings": {
+					"localUri": "localService/metadata.xml"
+				}
+			},
+			"mainService": {
+				"uri": "/sap/opu/odata/sap/YFIORI_USER_CONF_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			},
+			"YFIORI_USER_CONF_SRV": {
+				"uri": "/sap/opu/odata/sap/YFIORI_USER_CONF_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			}
+		}
+	},
+
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "sap-icon://task",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_belize",
+			"sap_hcb",
+			"sap_bluecrystal"
+		]
+	},
+
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "com.OPA5test.view.App",
+			"type": "XML",
+			"id": "app"
+		},
+		"handleValidation": true,
+		"dependencies": {
+			"minUI5Version": "1.38.0",
+			"libs": {
+				"sap.ui.core": {
+					"minVersion": "1.38.0"
+				},
+				"sap.m": {
+					"minVersion": "1.38.0"
+				}
+			}
+		},
+
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "com.OPA5test.i18n.i18n"
+				}
+			},
+			"": {
+				"dataSource": "mainService",
+				"preload": true,
+				"settings": {
+					"defaultBindingMode": "TwoWay"
+				}
+			},
+			"zgw_hcm_exit_doc_srv": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"dataSource": "zgw_hcm_exit_doc_srv"
+			},
+			"AppSettings": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneTime",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "YFIORI_USER_CONF_SRV",
+				"preload": false
+			}
+		},
+
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "com.OPA5test.view",
+				"controlId": "app",
+				"controlAggregation": "pages",
+				"bypassed": {
+					"target": ["notFound"]
+				},
+				"async": true
+			},
+
+			"routes": [{
+				"pattern": "",
+				"name": "start",
+				"target": ["start"]
+			},{
+				"pattern": "main",
+				"name": "main",
+				"target": ["main"]
+			}, {
+				"pattern": "Object/{objectId}",
+				"name": "object",
+				"target": ["object"]
+			}, {
+				"pattern": "welcome",
+				"name": "welcome",
+				"target": ["welcome"]
+			}],
+
+			"targets": {
+				"start": {
+					"viewName": "Start",
+					"viewId": "Start",
+					"viewLevel": 0
+				},
+				"main": {
+					"viewName": "Main",
+					"viewId": "main",
+					"viewLevel": 1
+				},
+				"object": {
+					"viewName": "Object",
+					"viewId": "object",
+					"viewLevel": 2
+				},
+				"notFound": {
+					"viewName": "NotFound",
+					"viewId": "notFound"
+				},
+				"welcome": {
+					"viewName": "Welcome",
+					"viewId": "welcome"
+				}
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/main.css",
+				"id": "MainCSS"
+			}]
+		}
+	}
+}

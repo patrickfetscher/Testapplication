@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+   <edmx:DataServices m:DataServiceVersion="2.0">
+      <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="oDataModel_hcm_questions" xml:lang="en" sap:schema-version="1">
+         <EntityType Name="questionHead" sap:content-version="1">
+            <Key>
+               <PropertyRef Name="pernr" />
+            </Key>
+            <Property Name="pernr" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel No." />
+            <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="ZHCM_EXIT_STATUS" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+            <Property Name="pin" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Pin" />
+            <Property Name="nname" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Last name" />
+            <Property Name="vname" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="First name" />
+            <Property Name="leaveDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Date" />
+            <Property Name="supervisor" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Personnel No." />
+            <Property Name="supNname" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Last name" />
+            <Property Name="supVname" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="First name" />
+            <Property Name="function" Type="Edm.String" MaxLength="25" sap:unicode="false" sap:label="Org.Unit Short Text" />
+            <Property Name="questionHeadID" Type="Edm.String" MaxLength="16" sap:unicode="false" sap:label="GUID" />
+            <Property Name="createDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Date" />
+            <NavigationProperty Name="answerSet" Relationship="oDataModel_hcm_questions.questionHeadanswer" FromRole="FromRole_questionHeadanswer" ToRole="ToRole_questionHeadanswer" />
+         </EntityType>
+        <EntityContainer Name="oDataModel_hcm_questions_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+            <EntitySet Name="questionHeadSet" EntityType="oDataModel_hcm_questions.questionHead" sap:searchable="true" sap:content-version="1" />
+        </EntityContainer>
+         <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="http://localhost:8080/sap/opu/odata/sap/zgw_hcm_exit_doc_srv/$metadata" />
+         <atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="http://localhost:8080/sap/opu/odata/sap/zgw_hcm_exit_doc_srv/$metadata" />
+      </Schema>
+   </edmx:DataServices>
+</edmx:Edmx>

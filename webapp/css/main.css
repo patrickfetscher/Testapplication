@@ -1,0 +1,87 @@
+html{
+    height: 100%;
+}
+.gebVersion {
+    font-size: 0.8em !important;
+}
+
+.nameTitle {
+    font-size: 1.2em !important;
+}
+
+.customLabel{
+    font-size: 1.7em !important;
+}
+
+.customList{
+    font-size: 1.7em !important;
+}
+
+.GebWelcomeHead {	
+    font-size: 1.5rem;
+}
+
+.questLabel{
+    font-size: 1em !important;
+    font-weight:bold;
+    color:black;
+}
+
+
+.subLabel{
+    padding-top: 0.5rem;
+    font-size: 0.875rem !important;
+    font-weight:bold;
+    color:black;
+}
+
+.inputLabel{
+    padding-top: 0.5rem;
+    font-size: 0.875em !important;
+    font-weight:bold;
+    color:black;
+}
+
+.headerText{
+    font-size: 1.2em !important;
+    font-weight:bold;
+    color:black;
+}
+
+.viewHeader{
+    padding-top: 0.3rem;
+    font-size: 0.8rem !important;
+    font-weight:bold;
+}
+
+.vBoxleft{  
+    padding-left: 2rem;
+    background-color: rgb(245, 244, 244);
+    border-bottom: groove;
+    border-width: 1px;
+    /* oben rechts unten links */
+}
+
+.vBoxright{
+    padding-right: 2rem;
+    background-color: rgb(245, 244, 244);
+    border-bottom: groove;
+    border-width: 1px;
+}
+
+.vBoxcenter{
+    background-color: rgb(245, 244, 244);
+    border-bottom: groove;
+    border-left: groove;
+    border-right: groove;
+    border-width: 1px;
+}
+
+.headerList{
+    margin-bottom: 2rem;
+}
+
+.textListItem{
+    margin-bottom: 1.2rem
+
+}

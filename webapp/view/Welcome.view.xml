@@ -1,0 +1,67 @@
+<mvc:View controllerName="com.OPA5test.controller.Welcome" 
+	xmlns="sap.m" 
+	xmlns:l="sap.ui.layout" 
+	xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core">
+	<Page title="{i18n>welcome_title} " showNavButton="true" navButtonPress="tapHomeButton">
+		<content>
+			<l:Grid defaultSpan="L12 M12 S12" class="sapUiSmallMarginTop">
+				<l:content>
+					<Label class="GebWelcomeHead" text="{i18n>appTitle}">
+						<layoutData>
+							<l:GridData span="L12 M12 S12" />
+						</layoutData>
+					</Label>
+					<FormattedText htmlText="{i18n>welcomeAppDescription}"></FormattedText>
+					<Label class="GebWelcomeHead" text="{i18n>welcomeChangesHeader}">
+					</Label>
+				</l:content>
+			</l:Grid>
+			<Panel expandable="true" expanded="true" headerText="Change Log" width="auto" class="sapUiResponsiveMargin">
+				<content>
+					<Select items="{select>/releases}" change="handleVersionChange" visible="true">
+						<core:Item text="{select>name}" key="{select>key}" />
+					</Select>
+					<l:VerticalLayout content="{path: '/notes', templateShareable: false}" width="100%">
+						<Text width="100%" text="[{type}] {text}" />
+					</l:VerticalLayout>
+				</content>
+			</Panel>
+			<Panel expandable="true" expanded="true" headerText="{i18n>welcomeTechnicalInformation}" width="auto" class="sapUiResponsiveMargin">
+				<content>
+					<l:Grid defaultSpan="L3 M4 S6" class="sapUiSmallMarginTop">
+						<Label text="Version"></Label>
+						<Label text="{= ${AppManiModel>/sap.app/applicationVersion/version} || 'n. A.' }">
+							<layoutData>
+								<l:GridData span="L9 M9 S9" />
+							</layoutData>
+						</Label>
+						<Label text="Name"></Label>
+						<Label text="{= ${AppManiModel>/name} || ${AppManiModel>/sap.app/id} || 'n. A.' }">
+							<layoutData>
+								<l:GridData span="L9 M9 S9" />
+							</layoutData>
+						</Label>
+						<Label text="{i18n>responsibleTeam}"></Label>
+						<Label text="SAP HCM">
+							<layoutData>
+								<l:GridData span="L9 M9 S9" />
+							</layoutData>
+						</Label>
+					</l:Grid>
+				</content>
+			</Panel>
+		</content>
+		<footer>
+			<Bar>
+				<contentLeft></contentLeft>
+				<contentMiddle>
+					<Button icon="sap-icon://pdf-reader" text="{i18n>openDocu}" press="onOpenDocu"></Button>
+				</contentMiddle>
+				<contentRight>
+					<Button type="Accept" icon="sap-icon://home" text="{i18n>startAppl}" press="tapHomeButton"></Button>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</mvc:View>

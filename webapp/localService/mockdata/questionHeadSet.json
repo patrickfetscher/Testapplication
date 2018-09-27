@@ -1,0 +1,15 @@
+
+[       
+    {
+        "pernr":"80022222",
+        "pin":"80022222",
+        "nname":"Maier",
+        "vname":"Martina",
+        "supervisor":"80011111",
+        "supNname":"Mustermann",
+        "supVname":"Max",
+        "function":"Verwaltung",
+        "questionHeadID":"8001111107022018",
+        "status":"0"
+    }
+]

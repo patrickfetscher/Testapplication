@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html manifest="offline.appcache">
+<!--<html>-->
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		 <meta http-equiv="cache-control" content="private" />
+		<meta charset="iso-8859-1">
+		<meta name="apple-mobile-web-app-capable" content="no"/>
+
+    
+		<title>Austritts-Fragebogen</title>
+		<script
+				id="sap-ui-bootstrap"
+				src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+				data-sap-ui-theme="sap_belize"
+				data-sap-ui-libs="sap.m,sap.ui.layout"
+				data-sap-ui-bindingSyntax="complex"
+				data-sap-ui-compatVersion="edge"
+				data-sap-ui-preload="async"
+				data-sap-ui-resourceroots='{
+					"com.OPA5test": "./",
+					"com.OPA5.controlsV2": "./com/OPA5/controlsV2"
+				}'>
+		</script>
+		<script>
+			var appCache = window.applicationCache;
+				var comp = null;
+			var that = this;
+			var lastBusysign = '-'
+			appCache.addEventListener('cached', logEventCached, false);
+			appCache.addEventListener('checking', logEvent, false);
+			appCache.addEventListener('downloading', logEvent, false);
+			appCache.addEventListener('error', logEvent, false);
+			appCache.addEventListener('noupdate', logEvent, false);
+			appCache.addEventListener('obsolete', logEvent, false);
+			appCache.addEventListener('progress', logEvent, false);
+
+			var cacheStatusValues = [];
+			cacheStatusValues[0] = 'uncached';
+			cacheStatusValues[1] = 'idle';
+			cacheStatusValues[2] = 'checking';
+			cacheStatusValues[3] = 'downloading';
+			cacheStatusValues[4] = 'updateready';
+			cacheStatusValues[5] = 'obsolete';
+			
+			function removeWebAppCapable(){  
+    			var metaTags = document.getElementsByTagName("meta"),  
+    			deleted = false;  
+    			for(var i = 0, iLength = metaTags.length; i < iLength && !deleted; i++){  
+	        		var metaTag = metaTags[i];  
+	        		if(metaTag.name === "apple-mobile-web-app-capable"){  
+	            		metaTag.parentNode.removeChild(metaTag);  
+	            		deleted = true;  
+	        		}  
+    			}  
+			} 
+
+		function logEventCached(e) {
+			 	var tmpcomp = null;
+				if (  that.comp !== undefined ||  that.comp !== null ){
+				//	 tmpcomp = that.comp.getComponentInstance();
+				}
+				  
+			    var online, status, type, message;
+			    online = (navigator.onLine) ? 'yes' : 'no';
+			    status = cacheStatusValues[appCache.status];
+			    type = e.type;
+			    message = 'Cached online: ' + online;
+			    message+= ', event: ' + type;
+			    message+= ', status: ' + status;
+			    if (type == 'error' && navigator.onLine) {
+			        message+= ' (prolly a syntax error in manifest)';
+			    }
+			    console.log(message);
+			    if (  tmpcomp !== undefined && tmpcomp !== null){
+					if (tmpcomp._ostate !== undefined){
+						var stateStr = status
+						if ( that.lastBusysign === '-' ){
+							stateStr = stateStr + " " + "|";
+							that.lastBusysign = "|";
+						}else{
+							stateStr = stateStr + " " + "-";
+							that.lastBusysign = "-";
+						}
+						tmpcomp._ostate.setProperty("/cache_state", stateStr);
+					}
+				}
+			}
+			
+			function logEvent(e) {
+				var tmpcomp = null;
+				if (  that.comp !== undefined ||  that.comp !== null ){
+					// tmpcomp = that.comp.getComponentInstance();
+				}
+				  
+			    var online, status, type, message;
+			    online = (navigator.onLine) ? 'yes' : 'no';
+			    status = cacheStatusValues[appCache.status];
+			    type = e.type;
+			    message = 'online: ' + online;
+			    message+= ', event: ' + type;
+			    message+= ', status: ' + status;
+			    if (type == 'error' && navigator.onLine) {
+			        message+= ' (prolly a syntax error in manifest)';
+			    }
+			    console.log(message);
+			    
+				if (  tmpcomp !== undefined && tmpcomp !== null ){
+					if (tmpcomp._ostate !== undefined){
+						var stateStr = status
+						if ( that.lastBusysign = '-' ){
+							stateStr = stateStr + " " + "-"
+						}else{
+							stateStr = stateStr + " " + "|"
+						}
+						tmpcomp._ostate.setProperty("/cache_state", stateStr);
+					}
+				}
+			
+			}
+		
+			window["sap-ushell-config"] = {
+				defaultRenderer : "fiori2",
+				renderers: {
+					fiori2: {
+					componentData: {
+						config: {
+						search: "hidden"
+						}
+					}
+					}
+				},
+				
+				applications: {
+					"jerrytestfiori-display": {
+					additionalInformation: "SAPUI5.Component=com.OPA5.yidm_ui_privile",
+					applicationType: "URL",
+					url: ".",
+					title: "IDM"
+					}
+				}
+			};
+
+
+				// Check if a new cache is available on page load.
+				window.addEventListener('load', function(e) {
+				
+				  window.applicationCache.addEventListener('updateready', function(e) {
+				  }, false);
+				
+				}, false);
+
+			sap.ui.getCore().attachInit(function () {
+			//	removeWebAppCapable();
+				
+				sap.ui.require([
+					"sap/m/Shell",
+					"sap/ui/core/ComponentContainer"
+				], function ( Shell, ComponentContainer) {
+				
+					var comcont = new ComponentContainer({
+							name: "com.OPA5test",
+							height: "100%"
+						});
+					that.comp = comcont;
+					new Shell({
+							id: "hcmQuestShell",
+						app: comcont
+					}).placeAt("content");
+				});
+			});
+ 
+		</script>
+ 
+	</head>
+	<body class="sapUiBody" id="content">
+	</body>
+</html>

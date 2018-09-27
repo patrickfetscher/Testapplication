@@ -1,0 +1,75 @@
+<mvc:View controllerName="com.OPA5test.controller.Main" xmlns="sap.m" xmlns:f="sap.f" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc">
+	<Page title="Version:{version>/version} @@builddate" class="sapUiResponsiveContentPadding">
+		<customHeader>
+			<Bar>
+				<contentLeft></contentLeft>
+				<contentMiddle>
+					<Text class="headerText" text="{i18n>LeaveQuestionaire}"/>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://sys-help" press="onOpenWelcome"></Button>
+					<Text class="gebVersion" text="@@builddate"/>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<ProgressIndicator
+				class="sapUiSmallMarginBottom"
+				percentValue="{path:'questionModel>/0/questionGroupID' , formatter: '.progresscal'}"
+				displayValue="{path:'questionModel>/0/questionGroupID' , formatter: '.progresscal'}%"
+				showValue="true"
+				state="None">
+			</ProgressIndicator>
+			<List>
+				<items>
+					<CustomListItem class="headerList">
+						<VBox>
+							<HBox width="100%">
+								<VBox class="vBoxleft" width="33%">
+									<Label class="viewHeader" text="{i18n>LastnameFirstname}"/> 
+								</VBox>
+								<VBox class="vBoxcenter" alignItems="Center" width="33%" >	
+									<Label class="viewHeader" text="{i18n>Function}"/>	
+								</VBox>
+								<VBox class="vBoxright" alignItems="End" width="34%">	
+									<Label class="viewHeader" text="{i18n>Superior}"/>
+								</VBox>
+							</HBox>
+							<HBox width="100%">
+								<VBox class="vBoxleft" width="33%">
+									<Label class="viewHeader" text="{userModel>/nname} {userModel>/vname}"/> 
+								</VBox>
+								<VBox class="vBoxcenter" alignItems="Center" width="33%" >	
+									<Label class="viewHeader" text="{userModel>/function}"/>		
+								</VBox>
+								<VBox class="vBoxright" alignItems="End" width="34%">	
+									<Label class="viewHeader" text="{userModel>/supNname}{userModel>/supVname}"/>
+								</VBox>
+							</HBox>
+						</VBox>
+					</CustomListItem>
+				</items>
+			</List>
+		 	<Panel width="auto" id="flexContent1">
+			<Text class="questLabel" text="{path:'questionModel>/0/' , formatter: '.setHeadertext'}"/>
+				<content>
+				</content>
+			</Panel>
+			<Panel width="auto" id="flexContent">
+				<content>
+				</content>
+			</Panel>
+		</content>
+		<footer>
+			<Bar id="Footer">
+				<contentLeft id="contentLeft"> 
+					<Button type="Reject" id="back" text="{i18n>Back}" icon="sap-icon://navigation-left-arrow" visible="false"  press="prevfragment"/>
+  				</contentLeft>
+				<contentMiddle></contentMiddle>
+				<contentRight id="contentRight">
+					<Button type="Accept" id="next" text="{i18n>Next}" icon="sap-icon://navigation-right-arrow" press="nextfragment"/>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</mvc:View>
